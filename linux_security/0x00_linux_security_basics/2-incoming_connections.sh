@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo ufw deny 80
+sudo ufw allow 80
