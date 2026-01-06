@@ -1,1 +1,1 @@
-udp and udp.srcport == 59791 and udp.dstport == 40125
+icmp.type == or icmp.type == 8
