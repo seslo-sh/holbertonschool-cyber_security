@@ -1,2 +1,2 @@
 #!/bin/bash
-openssl dgst -sha1 $1 -out 0_hash.txt
+sha1sum "$1" > 0_hash.txt
