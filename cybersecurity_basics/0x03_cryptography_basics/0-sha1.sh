@@ -1,2 +1,2 @@
 #!/bin/bash
-sha1sum "$1" > 0_hash.txt
+echo $1 > sha1sum > 0_hast.txt
