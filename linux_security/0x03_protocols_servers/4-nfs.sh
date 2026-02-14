@@ -1,2 +1,2 @@
 #!/bin/bash
-showmout -e $1
+showmount -e $1
