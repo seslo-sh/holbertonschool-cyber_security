@@ -1,11 +1,16 @@
 #!/usr/bin/python3
+"""
+Module to find and replace strings in the heap of a process.
+"""
 import sys
 
 def print_usage_and_exit():
+    """Prints usage and exits with status 1."""
     print("Usage: read_write_heap.py pid search_string replace_string")
     sys.exit(1)
 
 def main():
+    """Main function to perform heap search and replace."""
     if len(sys.argv) != 4:
         print_usage_and_exit()
 
