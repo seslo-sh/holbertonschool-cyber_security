@@ -4,10 +4,11 @@ Module to find and replace strings in the heap of a process.
 """
 import sys
 
+
 def print_usage_and_exit():
     """Prints usage and exits with status 1."""
-    print("Usage: read_write_heap.py pid search_string replace_string")
     sys.exit(1)
+
 
 def main():
     """Main function to perform heap search and replace."""
@@ -17,6 +18,9 @@ def main():
     pid = sys.argv[1]
     search_str = sys.argv[2]
     replace_str = sys.argv[3]
+
+    if not search_str:
+        return
 
     try:
         with open(f"/proc/{pid}/maps", "r") as maps_file:
@@ -32,7 +36,6 @@ def main():
                     break
 
         if heap_start is None or heap_end is None:
-            print("Error: Heap not found")
             sys.exit(1)
 
         with open(f"/proc/{pid}/mem", "rb+") as mem_file:
@@ -45,17 +48,14 @@ def main():
             try:
                 index = heap_data.index(search_bytes)
             except ValueError:
-                print(f"Error: {search_str} not found in heap")
                 sys.exit(1)
 
-            
             mem_file.seek(heap_start + index)
             mem_file.write(replace_bytes)
-            
 
-    except Exception as e:
-        print(f"Error: {e}")
+    except (IOError, PermissionError):
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
