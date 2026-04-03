@@ -48,7 +48,6 @@ def main():
                 print(f"Error: {search_str} not found in heap")
                 sys.exit(1)
 
-            print(f"[*] Found at {hex(heap_start + index)}")
             
             mem_file.seek(heap_start + index)
             mem_file.write(replace_bytes)
