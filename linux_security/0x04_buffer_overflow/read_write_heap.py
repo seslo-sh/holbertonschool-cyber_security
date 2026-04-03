@@ -19,11 +19,11 @@ def main():
     search_str = sys.argv[2]
     replace_str = sys.argv[3]
 
-    if not search_str:
+    if len(search_str) == 0:
         return
 
     try:
-        with open(f"/proc/{pid}/maps", "r") as maps_file:
+        with open("/proc/{}/maps".format(pid), "r") as maps_file:
             heap_start = None
             heap_end = None
 
@@ -38,7 +38,7 @@ def main():
         if heap_start is None or heap_end is None:
             sys.exit(1)
 
-        with open(f"/proc/{pid}/mem", "rb+") as mem_file:
+        with open("/proc/{}/mem".format(pid), "rb+") as mem_file:
             mem_file.seek(heap_start)
             heap_data = mem_file.read(heap_end - heap_start)
 
